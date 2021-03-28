@@ -20,14 +20,28 @@ from datetime import datetime as dt
 # Scrape all Reviews on page, deposit reviews into reviewList
 def probeReviews(reviews):
     for item in reviews:
-        review = {
-            'date': dt.strptime(cleanup.preprocess(item.find('span', {'data-hook': 'review-date'}).text.strip()).replace(" ", "-"), '%Y-%m-%d'),
-            'rating': int(item.find('i', {'data-hook': 'review-star-rating'}).text.strip()[:1]),
-            'title': item.find('a', {'data-hook': 'review-title'}).text.strip()
-        }
-        reviewList.append(review)
         if len(reviewList) == reviewsToScrape:
             break
+        title=""
+        try:
+            reviewRating = int(item.find('i', {'data-hook': 'review-star-rating'}).text.strip()[:1])
+        except:
+            reviewRating = int(item.find('i', {'data-hook': 'cmps-review-star-rating'}).text.strip()[:1])
+        try:
+            title = item.find('a', {'data-hook': 'review-title'}).text.strip()
+        except:
+            try:
+                title = item.find('span', {'data-hook': 'review-title'}).text.strip()
+            except:
+                title = item.find('span', {'class': 'cr-original-review-content'}).text.strip()
+
+        review = {
+            'date': dt.strptime(cleanup.preprocess(item.find('span', {'data-hook': 'review-date'}).text.strip()).replace(" ", "-"), '%Y-%m-%d'),
+            'rating': reviewRating,
+            'title': title
+        }
+        reviewList.append(review)
+        
     print("\""+review['title']+"\"")
 
 # User pasts in their Amazon URL, if a valid ID cant be found we'll print an error and exit the program
@@ -41,7 +55,7 @@ recentURL = 'https://www.amazon.com/product-reviews/'+itemID + \
     '/ref=cm_cr_arp_d_viewopt_srt?ie=UTF8&reviewerType=all_reviews&sortBy=recent&pageNumber=1'
 url = recentURL
 r = requests.get('http://localhost:8050/render.html',
-                 params={'url': url, 'wait': 2})
+                 params={'url': url, 'wait': 1})
 mySoup = BeautifulSoup(r.text, 'html.parser')
 
 
@@ -62,9 +76,10 @@ while True:
         reviewsToScrape = int(
             input("How many reviews would you like to plot (1-"+totalReviews+"): "))
         if reviewsToScrape != 0 and reviewsToScrape <= int(totalReviews):
-            timeEst = (reviewsToScrape/10)*2
-            print("Approximate time to plot", reviewsToScrape, "Reviews is", (round((timeEst/60), 2) if round(
-                (timeEst/60), 2) > 1 else m.floor(round((timeEst/60), 2))), "minutes", round((timeEst % 60), 2), "seconds")
+            seconds = (reviewsToScrape/10)*2
+            minutes = seconds // 60
+            seconds %= 60
+            print("Approximate time to plot", reviewsToScrape, "Reviews is", minutes, "minutes", round(seconds,2), "seconds")
             choice = input("Would you like to begin? (y/n): ").lower()
             if choice.startswith('y'):
                 break
@@ -77,7 +92,7 @@ reviewList = []
 # Walk through pages using the next button's URL to jump to the next page
 while len(reviewList) < reviewsToScrape:
     r = requests.get('http://localhost:8050/render.html',
-                     params={'url': url, 'wait': 2})
+                     params={'url': url, 'wait': 1})
     mySoup = BeautifulSoup(r.text, 'html.parser')
     reviews = mySoup.find_all('div', {'data-hook': 'review'})
     probeReviews(reviews)
