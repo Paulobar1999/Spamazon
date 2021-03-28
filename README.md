@@ -23,4 +23,7 @@ Enjoy reading the titles of reviews as they come pouring in!
 
 # Installation
 **Requirements**
-To install and run Spamazon you'll first need to install **python3** 3.8.5 or above. Next, you'll need **BeautifulSoup4** along with **Mathplotlib**, both can be installed easily using pip. Finally and most importantly you'll need to install splash and docker we recommend veiwing [Their instalation notes](https://splash.readthedocs.io/en/stable/)
+To install Spamazon you'll first need to install **python3** 3.8.5 or above. Next, you'll need **BeautifulSoup4** along with **Mathplotlib**, both can be installed easily using pip. Finally and most importantly you'll need to install [splash and docker](https://splash.readthedocs.io/en/stable/) we recommend viewing their installation notes as they lead you through installation and launching of splash.
+
+**Running**
+To run Spamazon simply make sure you have your splash server open on its default port (8050) and type in "python3 Spamazon.py" without the parentheses. You'll be prompted to paste in you Amazon URL, the program is designed to accept the landing page URL for nearly all product hosted on Amazon. Next, you'll be prompted to enter the number of reviews you wish to be collected for plotting, a **large number of reviews will correlate to a longer loading time**. Finally press y to start the program in full, with every page of reviews collected you'll be shown a glimpse of their content.
