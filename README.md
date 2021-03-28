@@ -5,8 +5,7 @@ An Amazon web scraping, and graphing utility made over the course of 48 hours in
 - Aaron Brown
 - Dylan Manuel
 
-A video walkthrough of our project is coming soon!
-
+A video demo can be found [**here!**](https://www.youtube.com/watch?v=pkKXkXm-fMY)
 # Features
 
 **Savable graphs**
