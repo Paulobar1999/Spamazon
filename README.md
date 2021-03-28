@@ -25,7 +25,7 @@ Enjoy reading the titles of reviews as they come pouring in!
 
 **Requirements**
 
-To install Spamazon you'll first need to install [**python3**](https://www.python.org/downloads/) 3.8.5 or above. Next, you'll need [**BeautifulSoup4**](https://pypi.org/project/beautifulsoup4/) along with **Mathplotlib**, both can be installed easily using pip. Finally and most importantly you'll need to install [splash and docker](https://splash.readthedocs.io/en/stable/) we recommend viewing their installation notes as they lead you through installation and launching of splash.
+To install Spamazon you'll first need to install [**python3**](https://www.python.org/downloads/) 3.8.5 or above. Next, you'll need [**BeautifulSoup4**](https://pypi.org/project/beautifulsoup4/) along with [**Mathplotlib**](https://matplotlib.org/stable/users/installing.html), both can be installed easily using pip. Finally and most importantly you'll need to install [splash and docker](https://splash.readthedocs.io/en/stable/) we recommend viewing their installation notes as they lead you through installation and launching of splash.
 
 **Running**
 
