@@ -1,5 +1,5 @@
 # What is Spamazon?
-An Amazon web scraping, and graphing utility made over the course of 48 hours by a team of talented coders consisting of:
+An Amazon web scraping, and graphing utility made over the course of 48 hours in python by a team of talented coders consisting of:
 - Paul O'Bar 
 - Michael Stepp
 - Aaron Brown
